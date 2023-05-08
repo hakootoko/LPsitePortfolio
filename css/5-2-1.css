@@ -1,0 +1,115 @@
+/*==================================================
+　5-2-1 3本線が×に
+===================================*/
+/*ボタン外側※レイアウトによってpositionや形状は適宜変更してください*/
+
+.display {
+    display: none;
+}
+
+.openbtn{
+	/*ボタン内側の基点となるためrelativeを指定。
+追従するナビゲーションの場合はfixed＋top、rightといった位置をセットで指定*/
+	position: relative;
+    background-image: linear-gradient( #FFD700, #CD7F32);
+	cursor: pointer;
+    width: 50px;
+    height:50px;
+	border-radius: 5px;
+    display: none;
+    margin-left: auto;
+}
+
+/*ボタン内側*/
+.openbtn span{
+    display: inline-block;
+    transition: all .4s;/*アニメーションの設定*/
+    position: absolute;
+    left: 14px;
+    height: 3px;
+    border-radius: 2px;
+	background: #fff;
+  	width: 45%;
+    z-index: 5;
+  }
+
+.openbtn span:nth-of-type(1) {
+	top:15px;	
+}
+
+.openbtn span:nth-of-type(2) {
+	top:23px;
+}
+
+.openbtn span:nth-of-type(3) {
+	top:31px;
+}
+
+/*activeクラスが付与されると線が回転して×に*/
+
+.openbtn.active span:nth-of-type(1) {
+    top: 18px;
+    left: 18px;
+    transform: translateY(6px) rotate(-45deg);
+    width: 30%;
+}
+
+.openbtn.active span:nth-of-type(2) {
+	opacity: 0;/*真ん中の線は透過*/
+}
+
+.openbtn.active span:nth-of-type(3){
+    top: 30px;
+    left: 18px;
+    transform: translateY(-6px) rotate(45deg);
+    width: 30%;
+}
+
+.anime-box {
+    z-index: 6;
+    animation-name: fadeleft;
+    animation-duration: 1s;
+    background-color: #241512;
+    text-align: right;
+    padding: 60px 10px 330px 30px;
+    margin-top: -60px;
+    margin-right: -10px;
+    overflow: hidden;
+    /* box-shadow: 0 0 10px 30px #241512; */
+}
+
+@keyframes fadeleft {
+    from {
+        opacity: 0;
+         transform: translateX(150px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    }
+
+.anime-box li {
+    list-style: none;
+  }
+  
+  .anime-box li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 10px;
+    text-shadow: 3px 3px 10px black;
+    line-height: 1.7em; 
+  }
+  
+  .anime-box li a:hover {
+    color: #7f7f7f;
+  }
+
+@media screen and (max-width: 400px) {
+    .openbtn {
+        display: block;
+
+    }
+}
